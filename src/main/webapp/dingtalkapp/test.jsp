@@ -42,7 +42,7 @@ $(function() {
 	//获取免登授权码
 	dd.ready(function() {
         dd.runtime.permission.requestAuthCode({
-            corpId : "放企业id",
+            corpId : '${cropId}',
             onSuccess : function(result) {
                 var code = result.code;
                 
@@ -54,7 +54,7 @@ $(function() {
 						$("#p1").html(obj.result.userName);
 						$("#p2").html(obj.result.userMobile);
 					}
-　　　　　　　　	})
+　　　　　　　　	});
             },
             onFail : function(err) {
                 alert('出错了, ' + err);
@@ -62,8 +62,6 @@ $(function() {
         });
 
     });
-	
-	
 	
 })
 

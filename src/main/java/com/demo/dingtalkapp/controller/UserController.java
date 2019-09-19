@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demo.dingtalkapp.service.inter.ICropService;
 import com.demo.dingtalkapp.service.inter.IUserService;
 import com.demo.dingtalkapp.utils.AccessTokenUtil;
 import com.demo.dingtalkapp.utils.Env;
@@ -26,10 +28,14 @@ import com.taobao.api.ApiException;
 public class UserController extends BaseController {
 	
 	@Resource
+	private ICropService cropService;
+	@Resource
 	private IUserService userService;
 	
 	@RequestMapping("/test")
-	public String test() {
+	public String test(String com, ModelMap modelMap) {
+		String cropId = cropService.getCropIdByCropCode(com);
+		modelMap.addAttribute("cropId", cropId);
 		return "test";
 	}
 	
